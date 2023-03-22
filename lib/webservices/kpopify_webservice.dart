@@ -29,7 +29,7 @@ class KpopifyWebService {
         body: body,
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         Map<String, dynamic> responseBody =
             json.decode(response.body) as Map<String, dynamic>;
         Artist result = Artist.fromJson(responseBody);
@@ -97,7 +97,7 @@ class KpopifyWebService {
     }
   }
 
-  Future<Artist> updateArtistProfile(
+  Future<bool> updateArtistProfile(
     String id,
     Artist artist, {
     http.Client? client,
@@ -117,10 +117,7 @@ class KpopifyWebService {
       );
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> responseBody =
-            json.decode(response.body) as Map<String, dynamic>;
-        Artist result = Artist.fromJson(responseBody);
-        return result;
+        return true;
       } else {
         throw Exception("failed to update Artist");
       }

@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      bloc: ArtistBloc("f2272d59114d411a9729008c769d16a1"),
+      bloc: ArtistBloc("cc72cd13ca8b4e4c95bf6ad86d93d1c3"),
       child: MaterialApp(
         title: 'Kpopify',
         theme: ThemeData(

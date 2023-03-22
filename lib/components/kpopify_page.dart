@@ -42,7 +42,37 @@ class _KpopifyPageState extends State<KpopifyPage> {
   }
 
   Future<void> _handleAddArtist(Artist artist) async {
-    await artistBloc.addArtist(artist);
+    final success = await artistBloc.addArtist(artist);
+
+    if (success) {
+      await _handleGetArtistList();
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            '${artist.stageName} has been successfully added',
+          ),
+        ));
+      }
+    }
+  }
+
+  Future<Artist> _handleGetArtistProfile(String id) async {
+    return await artistBloc.getArtistProfile(id);
+  }
+
+  Future<void> _handleUpdateArtist(String? id, Artist artist) async {
+    final success = await artistBloc.updateArtistProfile(id!, artist);
+
+    if (success) {
+      await _handleGetArtistList();
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            '${artist.stageName} has been successfully edited',
+          ),
+        ));
+      }
+    }
   }
 
   @override
@@ -62,6 +92,8 @@ class _KpopifyPageState extends State<KpopifyPage> {
           ArtistListWidget(
             getArtistList: () => _handleGetArtistList(),
             deleteArtist: (id) => _handleDeleteArtist(id),
+            getArtistProfile: (id) => _handleGetArtistProfile(id),
+            updateArtist: (id, artist) => _handleUpdateArtist(id, artist),
             stream: artistBloc.artistListStream,
           ),
         ],

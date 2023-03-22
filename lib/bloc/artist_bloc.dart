@@ -88,23 +88,23 @@ class ArtistBloc implements Bloc {
     }
   }
 
-  Future<Artist> addArtist(Artist artist) async {
+  Future<bool> addArtist(Artist artist) async {
     try {
       final service = _service ?? KpopifyWebService(key);
 
       Artist profile = await service.addArtist(artist);
-      return profile;
+      return true;
     } catch (e) {
       throw e;
     }
   }
 
-  Future<Artist> updateArtistProfile(String id, Artist artist) async {
+  Future<bool> updateArtistProfile(String id, Artist artist) async {
     try {
       final service = _service ?? KpopifyWebService(key);
 
-      Artist profile = await service.updateArtistProfile(id, artist);
-      return profile;
+      final result = await service.updateArtistProfile(id, artist);
+      return result;
     } catch (e) {
       throw e;
     }

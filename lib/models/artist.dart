@@ -10,6 +10,7 @@ class Artist {
   String? stageName;
   num? listeners;
   String? background;
+  String? company;
   num? age;
   String? birthday;
   List<String>? groups;
@@ -23,6 +24,7 @@ class Artist {
     this.stageName,
     this.listeners,
     this.background,
+    this.company,
     this.age,
     this.birthday,
     this.groups,
@@ -70,6 +72,7 @@ class Artist {
       stageName: json["stageName"],
       listeners: json["listeners"],
       background: json["background"],
+      company: json["company"],
       age: json["age"],
       birthday: json["birthday"],
       groups: _groups,
@@ -88,6 +91,7 @@ class Artist {
       "stageName": stageName,
       "listeners": listeners,
       "background": background,
+      "company": company,
       "age": age,
       "birthday": birthday,
       "groups": groups,

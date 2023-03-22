@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:kpopify/components/add_artist_widget.dart';
 import 'package:kpopify/models/artist.dart';
 
 class FilterWidget extends StatefulWidget {
@@ -99,6 +100,15 @@ class _FilterWidgettState extends State<FilterWidget> {
       child: InkWell(
         onTap: () {
           print("add");
+          if (context.mounted) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AddArtistWidget(
+                  addArtist: widget.addArtist,
+                ),
+              ),
+            );
+          }
         },
         child: const Icon(
           Icons.add,
